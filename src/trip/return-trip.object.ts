@@ -10,5 +10,13 @@ export const returnTripObject: Prisma.TripSelect = {
 	startDate: true,
 	endDate: true,
 
-	ownerId: true
+	ownerId: true,
+	places: {
+		select: {
+			id: true,
+			locationName: true,
+			notes: true,
+			dayNumber: true
+		}
+	}
 }

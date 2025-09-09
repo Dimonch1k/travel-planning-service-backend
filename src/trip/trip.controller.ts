@@ -16,10 +16,11 @@ import {
 import { CurrentUser } from 'src/auth/decorators/user.decorator'
 import { JwtAuthGuard } from 'src/auth/guards/jwt.guard'
 
+import { CreateTripInviteDto } from './dto/create-invite.dto'
 import { CreateTripDto } from './dto/create-trip.dto'
 import { GetAllTripDto } from './dto/get-all.trip.dto'
 import { UpdateTripDto } from './dto/update-trip.dto'
-import { TripService } from './trip.service'
+import { TripService } from './services/trip.service'
 
 @UseGuards(JwtAuthGuard)
 @Controller('trips')
@@ -72,5 +73,25 @@ export class TripController {
 		@Param('id') tripId: string
 	) {
 		return this.tripService.delete(userId, tripId)
+	}
+
+	@UsePipes(new ValidationPipe({ whitelist: true }))
+	@HttpCode(200)
+	@Post(':id/invite')
+	async invite(
+		@CurrentUser('id') userId: string,
+		@Param('id') tripId: string,
+		@Body() dto: CreateTripInviteDto
+	) {
+		return this.tripService.inviteCollaborator(userId, tripId, dto)
+	}
+
+	@HttpCode(200)
+	@Post('accept-invite/:token')
+	async accept(
+		@CurrentUser('id') userId: string,
+		@Param('token') token: string
+	) {
+		return this.tripService.acceptInvite(userId, token)
 	}
 }
