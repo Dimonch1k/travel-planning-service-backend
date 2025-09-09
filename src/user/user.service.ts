@@ -4,8 +4,10 @@ import {
 	NotFoundException
 } from '@nestjs/common'
 import { hash, verify } from 'argon2'
+
 import { RegisterDto } from 'src/auth/dto/register.dto'
 import { PrismaService } from 'src/prisma.service'
+
 import { returnUserObject } from './return-user.object'
 import { UpdateUserDto } from './update-user.dto'
 

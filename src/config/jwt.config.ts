@@ -1,5 +1,6 @@
 import { ConfigService } from '@nestjs/config'
 import { JwtModuleOptions } from '@nestjs/jwt'
+
 import { Variable } from 'src/auth/enums/env.enum'
 
 export const getJwtConfig = async (
@@ -17,7 +18,7 @@ export const getJwtConfig = async (
 	return {
 		secret,
 		signOptions: {
-			expiresIn,
-		},
+			expiresIn
+		}
 	}
 }

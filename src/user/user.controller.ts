@@ -8,8 +8,10 @@ import {
 	UsePipes,
 	ValidationPipe
 } from '@nestjs/common'
+
 import { CurrentUser } from 'src/auth/decorators/user.decorator'
 import { JwtAuthGuard } from 'src/auth/guards/jwt.guard'
+
 import { UpdateUserDto } from './update-user.dto'
 import { UserService } from './user.service'
 

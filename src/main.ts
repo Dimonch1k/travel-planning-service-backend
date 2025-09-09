@@ -1,7 +1,6 @@
 import { ConfigService } from '@nestjs/config'
 import { NestFactory } from '@nestjs/core'
 import { NestExpressApplication } from '@nestjs/platform-express'
-import * as cookieParser from 'cookie-parser'
 import * as cors from 'cors'
 
 import { AppModule } from './app.module'
@@ -12,9 +11,7 @@ async function bootstrap() {
 	const app = await NestFactory.create<NestExpressApplication>(AppModule)
 	app.setGlobalPrefix('api/v1')
 
-	// Parse cookies
-	app.use(cookieParser())
-	// Log all requests
+	// Logs all incoming requests
 	app.useGlobalInterceptors(new LoggingInterceptor())
 
 	const configService = app.get(ConfigService)
