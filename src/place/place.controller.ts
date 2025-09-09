@@ -8,19 +8,18 @@ import {
 	ParseUUIDPipe,
 	Post,
 	Put,
-	UseGuards,
 	UsePipes,
 	ValidationPipe
 } from '@nestjs/common'
 
 import { CurrentUser } from 'src/auth/decorators/user.decorator'
-import { JwtAuthGuard } from 'src/auth/guards/jwt.guard'
+import { VerifiedAuth } from 'src/auth/decorators/verified-auth.decorator'
 
 import { CreatePlaceDto } from './dto/create-place.dto'
 import { UpdatePlaceDto } from './dto/update-place.dto'
 import { PlaceService } from './place.service'
 
-@UseGuards(JwtAuthGuard)
+@VerifiedAuth()
 @Controller('trips/:tripId/places')
 export class PlaceController {
 	constructor(private readonly placeService: PlaceService) {}

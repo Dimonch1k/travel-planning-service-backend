@@ -6,5 +6,6 @@ export const returnUserObject: Prisma.UserSelect = {
 	updatedAt: true,
 
 	name: true,
-	email: true
+	email: true,
+	isVerified: true
 }

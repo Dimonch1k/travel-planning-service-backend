@@ -8,21 +8,20 @@ import {
 	Post,
 	Put,
 	Query,
-	UseGuards,
 	UsePipes,
 	ValidationPipe
 } from '@nestjs/common'
 
 import { CurrentUser } from 'src/auth/decorators/user.decorator'
-import { JwtAuthGuard } from 'src/auth/guards/jwt.guard'
+import { VerifiedAuth } from 'src/auth/decorators/verified-auth.decorator'
 
 import { CreateTripInviteDto } from './dto/create-invite.dto'
 import { CreateTripDto } from './dto/create-trip.dto'
 import { GetAllTripDto } from './dto/get-all.trip.dto'
 import { UpdateTripDto } from './dto/update-trip.dto'
-import { TripService } from './services/trip.service'
+import { TripService } from './trip.service'
 
-@UseGuards(JwtAuthGuard)
+@VerifiedAuth()
 @Controller('trips')
 export class TripController {
 	constructor(private readonly tripService: TripService) {}

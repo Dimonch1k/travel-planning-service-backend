@@ -4,18 +4,17 @@ import {
 	Get,
 	HttpCode,
 	Put,
-	UseGuards,
 	UsePipes,
 	ValidationPipe
 } from '@nestjs/common'
 
 import { CurrentUser } from 'src/auth/decorators/user.decorator'
-import { JwtAuthGuard } from 'src/auth/guards/jwt.guard'
 
+import { Auth } from 'src/auth/decorators/auth.decorator'
 import { UpdateUserDto } from './update-user.dto'
 import { UserService } from './user.service'
 
-@UseGuards(JwtAuthGuard)
+@Auth()
 @Controller('user/profile')
 export class UserController {
 	constructor(private readonly userService: UserService) {}

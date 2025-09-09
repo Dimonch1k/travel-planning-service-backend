@@ -10,13 +10,13 @@ import { addHours } from 'date-fns'
 import { InvitationStatus } from 'prisma/generated/prisma'
 import { PrismaService } from 'src/prisma.service'
 
-import { CreateTripInviteDto } from '../dto/create-invite.dto'
-import { CreateTripDto } from '../dto/create-trip.dto'
-import { EnumTripSort, GetAllTripDto } from '../dto/get-all.trip.dto'
-import { UpdateTripDto } from '../dto/update-trip.dto'
-import { returnTripObject } from '../return-trip.object'
+import { CreateTripInviteDto } from './dto/create-invite.dto'
+import { CreateTripDto } from './dto/create-trip.dto'
+import { EnumTripSort, GetAllTripDto } from './dto/get-all.trip.dto'
+import { UpdateTripDto } from './dto/update-trip.dto'
+import { returnTripObject } from './return-trip.object'
 
-import { EmailService } from './email.service'
+import { EmailService } from '../email.service'
 
 @Injectable()
 export class TripService {
