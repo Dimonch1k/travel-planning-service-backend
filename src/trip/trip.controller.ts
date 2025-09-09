@@ -27,7 +27,7 @@ export class TripController {
 	constructor(private readonly tripService: TripService) {}
 
 	@UsePipes(new ValidationPipe({ whitelist: true }))
-	@HttpCode(201)
+	@HttpCode(200)
 	@Post()
 	async createTrip(
 		@CurrentUser('id') userId: string,
