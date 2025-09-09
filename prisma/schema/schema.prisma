@@ -13,5 +13,4 @@ enum InvitationStatus {
   PENDING
   ACCEPTED
   EXPIRED
-  REVOKED
 }
