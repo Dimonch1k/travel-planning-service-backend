@@ -1,0 +1,21 @@
+model User {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  name     String?
+  email    String  @unique
+  password String
+
+  isVerified             Boolean @default(false) @map("is_verified")
+  verificationEmailToken String? @unique @map("verification_email_token")
+
+  passwordResetToken   String?   @unique @map("password_reset_token")
+  passwordResetExpires DateTime? @map("password_reset_expires")
+
+  ownedTrips      Trip[]             @relation("TripOwner")
+  collaborations  TripCollaborator[]
+  sentInvitations TripInvitation[]   @relation("InvitationSender")
+
+  @@map("users")
+}

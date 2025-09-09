@@ -1,0 +1,19 @@
+model Trip {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  title       String
+  description String?
+  startDate   DateTime? @map("start_date")
+  endDate     DateTime? @map("end_date")
+
+  ownerId String @map("owner_id")
+  owner   User   @relation("TripOwner", fields: [ownerId], references: [id], onDelete: Cascade)
+
+  places        Place[]
+  collaborators TripCollaborator[]
+  invitations   TripInvitation[]
+
+  @@map("trips")
+}

@@ -1,0 +1,14 @@
+model Place {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  locationName String  @map("location_name")
+  notes        String?
+  dayNumber    Int     @map("day_number")
+
+  tripId String @map("trip_id")
+  trip   Trip   @relation(fields: [tripId], references: [id], onDelete: Cascade)
+
+  @@map("places")
+}
